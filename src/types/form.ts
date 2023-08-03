@@ -350,6 +350,7 @@ export type UseFormGetFieldState<TFieldValues extends FieldValues> = <
   isDirty: boolean;
   isTouched: boolean;
   error?: FieldError;
+  defaultValue: FieldPathValue<TFieldValues, TFieldName>;
 };
 
 export type UseFormWatch<TFieldValues extends FieldValues> = {

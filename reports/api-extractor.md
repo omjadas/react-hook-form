@@ -74,18 +74,19 @@ export type Control<TFieldValues extends FieldValues = FieldValues, TContext = a
 export const Controller: <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControllerProps<TFieldValues, TName>) => ReactElement<any, string | JSXElementConstructor<any>>;
 
 // @public (undocumented)
-export type ControllerFieldState = {
+export type ControllerFieldState<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
     invalid: boolean;
     isTouched: boolean;
     isDirty: boolean;
     error?: FieldError;
+    defaultValue: FieldPathValue<TFieldValues, TName>;
 };
 
 // @public
 export type ControllerProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
     render: ({ field, fieldState, formState, }: {
         field: ControllerRenderProps<TFieldValues, TName>;
-        fieldState: ControllerFieldState;
+        fieldState: ControllerFieldState<TFieldValues, TName>;
         formState: UseFormStateReturn<TFieldValues>;
     }) => React_2.ReactElement;
 } & UseControllerProps<TFieldValues, TName>;
@@ -561,7 +562,7 @@ export type UseControllerProps<TFieldValues extends FieldValues = FieldValues, T
 export type UseControllerReturn<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
     field: ControllerRenderProps<TFieldValues, TName>;
     formState: UseFormStateReturn<TFieldValues>;
-    fieldState: ControllerFieldState;
+    fieldState: ControllerFieldState<TFieldValues, TName>;
 };
 
 // @public
@@ -630,6 +631,7 @@ export type UseFormGetFieldState<TFieldValues extends FieldValues> = <TFieldName
     isDirty: boolean;
     isTouched: boolean;
     error?: FieldError;
+    defaultValue: FieldPathValue<TFieldValues, TFieldName>;
 };
 
 // @public (undocumented)
@@ -828,7 +830,7 @@ export type WatchObserver<TFieldValues extends FieldValues> = (value: DeepPartia
 
 // Warnings were encountered during analysis:
 //
-// src/types/form.ts:431:3 - (ae-forgotten-export) The symbol "Subscription" needs to be exported by the entry point index.d.ts
+// src/types/form.ts:432:3 - (ae-forgotten-export) The symbol "Subscription" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

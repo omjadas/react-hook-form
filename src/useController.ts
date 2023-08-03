@@ -171,7 +171,11 @@ export function useController<
           enumerable: true,
           get: () => get(formState.errors, name),
         },
+        defaultValue: {
+          enumerable: true,
+          get: () => get(formState.defaultValues, name),
+        },
       },
-    ) as ControllerFieldState,
+    ) as ControllerFieldState<TFieldValues, TName>,
   };
 }

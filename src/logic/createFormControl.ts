@@ -849,6 +849,7 @@ export function createFormControl<
     isDirty: !!get((formState || _formState).dirtyFields, name),
     isTouched: !!get((formState || _formState).touchedFields, name),
     error: get((formState || _formState).errors, name),
+    defaultValue: get((formState || _formState).defaultValues, name),
   });
 
   const clearErrors: UseFormClearErrors<TFieldValues> = (name) => {

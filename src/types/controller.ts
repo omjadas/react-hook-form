@@ -12,11 +12,15 @@ import {
   UseFormStateReturn,
 } from './';
 
-export type ControllerFieldState = {
+export type ControllerFieldState<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = {
   invalid: boolean;
   isTouched: boolean;
   isDirty: boolean;
   error?: FieldError;
+  defaultValue: FieldPathValue<TFieldValues, TName>;
 };
 
 export type ControllerRenderProps<
@@ -50,7 +54,7 @@ export type UseControllerReturn<
 > = {
   field: ControllerRenderProps<TFieldValues, TName>;
   formState: UseFormStateReturn<TFieldValues>;
-  fieldState: ControllerFieldState;
+  fieldState: ControllerFieldState<TFieldValues, TName>;
 };
 
 /**
@@ -84,7 +88,7 @@ export type ControllerProps<
     formState,
   }: {
     field: ControllerRenderProps<TFieldValues, TName>;
-    fieldState: ControllerFieldState;
+    fieldState: ControllerFieldState<TFieldValues, TName>;
     formState: UseFormStateReturn<TFieldValues>;
   }) => React.ReactElement;
 } & UseControllerProps<TFieldValues, TName>;
